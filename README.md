@@ -1,3 +1,3 @@
 # UStack
 
-A description of this package.
+A tool refining syntx of UIStackView in UIKit
