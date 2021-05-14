@@ -1,11 +1,12 @@
 Pod::Spec.new do |s|
 
   s.name         = "UStack"
-  s.version      = "0.3.0"
+  s.version      = "0.4.0"
   s.summary      = "A tool for use viewbuilder like syntx in UIKit."
 
   s.description  = <<-DESC
-                   Use HStack, VStack like syntx in UIKit.
+                   This repo use @resultBuilder to implement HStack, VStack in UIKit, 
+                   with which you can have a better experience when building views in UIKit.
                    
                    DESC
 
@@ -14,7 +15,7 @@ Pod::Spec.new do |s|
   s.license      = { :type => "MIT", :file => "LICENSE" }
 
   s.authors            = { "foxsion10" => "yzjcnn@gmail.com" }
-  s.social_media_url   = "https://github.com/foxsion10"
+  s.social_media_url   = "https://github.com/foxsin10"
 
   s.swift_versions = ['5.4']
 
