@@ -5,7 +5,7 @@ Pod::Spec.new do |s|
   s.summary      = "A tool for use viewbuilder like syntx in UIKit."
 
   s.description  = <<-DESC
-                   A tool for use viewbuilder like syntx in UIKit.
+                   Use HStack, VStack like syntx in UIKit.
                    
                    DESC
 
