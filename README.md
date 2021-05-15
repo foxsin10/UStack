@@ -96,7 +96,7 @@ platform :ios, '11.0'
 use_frameworks!
 
 target 'MyApp' do
-  pod 'UStack', '~> 0.4.0'
+  pod 'UStack', '~> 0.5.0'
 end
 ```
 
