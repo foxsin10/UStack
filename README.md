@@ -62,6 +62,23 @@ HStack {
 }
 ```
 
+StackBuilder use-case:
+
+```swift
+@HStackBuilder
+func hstack() -> UIStackView {
+  UILabel()
+  UIButton()
+}
+
+@VStackBuilder
+func vstack() -> UIStackView {
+  UILabel()
+  UIButton()
+}
+```
+
+
 ### Installation
 
 #### Swift Package Manager
@@ -69,6 +86,7 @@ HStack {
 - File > Swift Packages > Add Package Dependency
 - Add `https://github.com/foxsin10/UStack.git`
 - Select "Up to Next Major" with "1.0.0"
+
 
 #### CocoaPods
 
