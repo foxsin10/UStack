@@ -41,6 +41,26 @@ let vstack = VStack {
 }
 ```
 
+Nested use-case:
+
+```swift
+HStack {
+  VStack {
+    UILabel()
+    UIButton()
+  }
+  VStack {
+    UIImageView()
+    UIView()
+  }
+  UIView().withSubViews {
+    HStack {
+      UILabel()
+      UIButton()
+    }
+  }
+}
+```
 
 ### Installation
 
