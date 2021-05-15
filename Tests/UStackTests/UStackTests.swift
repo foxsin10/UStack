@@ -100,4 +100,24 @@
                 }
             }
         }
+
+        func testNestedStackCount() {
+            let nestedStack = HStack {
+                VStack {
+                    UILabel()
+                    UIView()
+                }
+                UIView().withSubViews {
+                    UILabel()
+                    UIView()
+                }
+            }
+            let count = nestedStack.arrangedSubviews.reduce(into: 0) {
+                switch $1 {
+                case let view as UIStackView: $0 += view.arrangedSubviews.count + 1
+                default: $0 += $1.subviews.count + 1
+                }
+            }
+            XCTAssertEqual(count, 6)
+        }
     }
