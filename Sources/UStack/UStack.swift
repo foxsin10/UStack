@@ -35,16 +35,16 @@ public enum ViewStackBuilder {
     }
 }
 
-extension UIView {
+public extension UIView {
     @discardableResult
-    public func withSubViews(@ViewStackBuilder views: () -> [UIView]) -> UIView {
+    func withSubViews(@ViewStackBuilder views: () -> [UIView]) -> UIView {
         views().forEach { self.addSubview($0) }
         return self
     }
 }
 
-extension UIStackView {
-    public convenience init(axis: NSLayoutConstraint.Axis = .horizontal,
+public extension UIStackView {
+     convenience init(axis: NSLayoutConstraint.Axis = .horizontal,
                      spacing: CGFloat = 0,
                      distribution: Distribution = .fill,
                      alignment: Alignment = .fill,
@@ -58,8 +58,8 @@ extension UIStackView {
 }
 
 final public class HStack: UIStackView {}
-extension HStack {
-    convenience public init(spacing: CGFloat = 0,
+public extension HStack {
+    convenience init(spacing: CGFloat = 0,
                      distribution: Distribution = .fill,
                      alignment: Alignment = .fill,
                      @ViewStackBuilder views: () -> [UIView]) {
@@ -72,8 +72,8 @@ extension HStack {
 }
 
 final public class VStack: UIStackView {}
-extension VStack {
-    convenience public init(spacing: CGFloat = 0,
+public extension VStack {
+    convenience init(spacing: CGFloat = 0,
                      distribution: Distribution = .fill,
                      alignment: Alignment = .fill,
                      @ViewStackBuilder views: () -> [UIView]) {
