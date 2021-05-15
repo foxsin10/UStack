@@ -34,7 +34,7 @@ let label = UILabel()
 let button = UIButton()
 let simpleView = UIView()
 
-let hstack = VStack {
+let vstack = VStack {
     label
     button
     simpleView
