@@ -2,6 +2,8 @@
     @testable import UStack
 
     final class UStackTests: XCTestCase {
+
+        private let tags: [Int] = [114, 321, 323, 244, 1122]
         override func measure(_ block: () -> Void) {
             testVStackBuilder()
             testHStackBuilder()
@@ -119,5 +121,58 @@
                 }
             }
             XCTAssertEqual(count, 6)
+        }
+
+        func testConrolFlow() {
+            let randomIdx = Int.random(in: 12 ..< 29)
+            let refresh = Bool.random()
+            let button = UIButton()
+            let label = UILabel()
+            let refreshLabel = UILabel()
+            let unRefreshLabel = UILabel()
+            let emptyView = UIView()
+            for (idx, view) in  [button, label, refreshLabel, unRefreshLabel, emptyView].enumerated() {
+                view.tag = tags[idx]
+            }
+
+            @ViewStackBuilder
+            func build() -> UIView {
+                button
+                label
+                if refresh {
+                    refreshLabel
+                } else {
+                    unRefreshLabel
+                }
+                switch randomIdx {
+                case 12: emptyView
+                default: UIView()
+                }
+            }
+
+            let view = build()
+
+            for (idx, subview) in view.subviews.enumerated() {
+                let tag = tags[idx]
+                switch idx {
+                case 2:
+                    if refresh {
+                        XCTAssertEqual(subview.tag, tag)
+                    } else {
+                        XCTAssertEqual(subview.tag, tags[idx + 1])
+                    }
+
+                case 3:
+                    if randomIdx == 12 {
+                        XCTAssertEqual(subview.tag, tags.last)
+                    } else {
+                        XCTAssertEqual(subview.tag, 0)
+                    }
+
+                default:
+                    XCTAssertEqual(subview.tag, tag)
+                }
+            }
+            XCTAssertEqual(view.subviews.count, 4)
         }
     }
