@@ -44,14 +44,27 @@ let vstack = VStack {
 Nested use-case:
 
 ```swift
+let refresh = Bool.random()
+let refreshAnother = Bool.random()
+let idx = Int.random(in: 1 ... 12)
 HStack {
   VStack {
     UILabel()
     UIButton()
   }
-  VStack {
-    UIImageView()
-    UIView()
+  if refresh {
+    VStack {
+      UIImageView()
+      UIView()
+    }
+  }
+  if refreshAnother {
+    VStack {
+      UIImageView()
+      UIView()
+    }
+  } else {
+      UIView()
   }
   UIView().withSubViews {
     HStack {
@@ -61,6 +74,13 @@ HStack {
   }
 }
 ```
+
+ps: every control flow will be treated as a block, give the simplest VStack for example:
+
+- `buildExpression(_:)` -> UILabel
+- `buildExpression(_:)` -> UIButton
+- `buildBlock(_:)` -> VStack
+- `buildExpression(_:)` -> VStack
 
 StackBuilder use-case:
 

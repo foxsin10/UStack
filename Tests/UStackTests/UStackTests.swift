@@ -141,8 +141,6 @@
                 label
                 if refresh {
                     refreshLabel
-                } else {
-                    unRefreshLabel
                 }
                 switch randomIdx {
                 case 12: emptyView
