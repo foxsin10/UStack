@@ -3,15 +3,13 @@
 
 A tool for StackView in UIKit.
 
-
 ## Requirements
 
-- iOS 11.0+ 
+- iOS 11.0+
 - Xcode 12.5+
 - Swift 5.4+
 
-
-### Use cases 
+### Use cases
 
 HStack use-case:
 
@@ -98,7 +96,6 @@ func vstack() -> UIStackView {
 }
 ```
 
-
 ### Installation
 
 #### Swift Package Manager
@@ -106,7 +103,6 @@ func vstack() -> UIStackView {
 - File > Swift Packages > Add Package Dependency
 - Add `https://github.com/foxsin10/UStack.git`
 - Select "Up to Next Major" with "1.0.0"
-
 
 #### CocoaPods
 
@@ -119,7 +115,6 @@ target 'MyApp' do
   pod 'UStack', '~> 0.6.0'
 end
 ```
-
 
 ### License
 
