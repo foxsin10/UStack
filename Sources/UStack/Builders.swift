@@ -1,63 +1,87 @@
+#if canImport(UIKit)
 import UIKit
+public typealias View = UIView
+public typealias StackView = UIStackView
+#elseif canImport(AppKit)
+import AppKit
+public typealias View = NSView
+public typealias StackView = NSStackView
+#endif
 
 @resultBuilder
 public enum HStackBuilder {
-    public static func buildBlock(_ components: UIView...) -> UIStackView {
-        let view = UIStackView(arrangedSubviews: components)
-        view.axis = .horizontal
+    public static func buildBlock(_ components: View...) -> StackView {
+        components.forEach { $0.translatesAutoresizingMaskIntoConstraints = false }
+        let view: StackView
+        #if canImport(UIKit)
+        view = StackView(arrangedSubviews: components)
+        #elseif canImport(AppKit)
+        view = StackView(views: components)
+        #endif
         return view
     }
 }
 
 @resultBuilder
 public enum VStackBuilder {
-    public static func buildBlock(_ components: UIView...) -> UIStackView {
-        let view = UIStackView(arrangedSubviews: components)
-        view.axis = .vertical
+    public static func buildBlock(_ components: View...) -> StackView {
+        components.forEach { $0.translatesAutoresizingMaskIntoConstraints = false }
+        let view: StackView
+        #if canImport(UIKit)
+        view = StackView(arrangedSubviews: components)
+        #elseif canImport(AppKit)
+        view = StackView(views: components)
+        #endif
         return view
     }
 }
 
 @resultBuilder
 public enum ContainerViewBuilder {
-    public static func buildBlock(_ components: UIView...) -> UIView {
-        let view = UIView()
-        components.forEach { view.addSubview($0) }
+    public static func buildBlock(_ components: View...) -> View {
+        let view = View()
+        components.forEach {
+            $0.translatesAutoresizingMaskIntoConstraints = false
+            view.addSubview($0)
+        }
         return view
     }
 }
 
 @resultBuilder
 public enum ViewStackBuilder {
-    public static func buildExpression(_ expression: UIView) -> UIView {
+    public static func buildExpression(_ expression: View) -> View {
         expression
     }
 
-    public static func buildBlock(_ components: UIView...) -> UIView {
+    public static func buildBlock(_ components: View...) -> View {
         let count = components.count
         switch count {
-        case 0: return UIView.spacer()
-        case 1: return components.first ?? UIView()
+        case 0: return View.spacer()
+        case 1: return components.first ?? View()
 
         default:
-            let view = UIView()
-            components.forEach { view.addSubview($0) }
+            let view = View()
+            components.forEach {
+                $0.translatesAutoresizingMaskIntoConstraints = false
+                view.addSubview($0)
+            }
             return view
         }
     }
 
-    public static func buildOptional(_ component: UIView?) -> UIView {
+    public static func buildOptional(_ component: View?) -> View {
         guard let view = component else {
-            return UIView.spacer()
+            return View.spacer()
         }
         return view
     }
 
-    public static func buildEither(first component: UIView) -> UIView {
+    public static func buildEither(first component: View) -> View {
         component
     }
 
-    public static func buildEither(second component: UIView) -> UIView {
+    public static func buildEither(second component: View) -> View {
         component
     }
 }

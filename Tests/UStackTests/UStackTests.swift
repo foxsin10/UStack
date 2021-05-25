@@ -5,12 +5,14 @@
 
         private let tags: [Int] = [114, 321, 323, 244, 1122]
         override func measure(_ block: () -> Void) {
+            #if canImport(UIKit)
             testVStackBuilder()
             testHStackBuilder()
             testVStack()
             testHStack()
+            #endif
         }
-
+        #if canImport(UIKit)
         func testHStackBuilder() {
             let label = UILabel()
             let button = UIButton()
@@ -173,4 +175,5 @@
             }
             XCTAssertEqual(view.subviews.count, 4)
         }
+        #endif
     }
