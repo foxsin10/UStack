@@ -98,7 +98,7 @@ func vstack() -> UIStackView {
 ### Sample
 
 <p align="center">
-<img src="https://raw.githubusercontent.com/foxsion10/UStack/master/images/UStackSample.jpeg" alt="UStack" title="UStack" width="377"/>
+<img src="https://raw.githubusercontent.com/foxsion10/UStack/master/images/UStackSample.png" alt="UStack" title="UStack" width="377"/>
 </p>
 
 As the example image above, the implement code:
