@@ -6,7 +6,6 @@ A tool for StackView in UIKit.
 
 - iOS 11.0+
 - Xcode 12.5+
-- Swift 5.4+
 
 ### Use cases
 

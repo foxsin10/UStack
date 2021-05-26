@@ -8,7 +8,7 @@ public typealias View = NSView
 public typealias StackView = NSStackView
 #endif
 
-@resultBuilder
+@_functionBuilder
 public enum HStackBuilder {
     public static func buildBlock(_ components: View...) -> StackView {
         components.forEach { $0.translatesAutoresizingMaskIntoConstraints = false }
@@ -22,7 +22,7 @@ public enum HStackBuilder {
     }
 }
 
-@resultBuilder
+@_functionBuilder
 public enum VStackBuilder {
     public static func buildBlock(_ components: View...) -> StackView {
         components.forEach { $0.translatesAutoresizingMaskIntoConstraints = false }
@@ -36,7 +36,7 @@ public enum VStackBuilder {
     }
 }
 
-@resultBuilder
+@_functionBuilder
 public enum ContainerViewBuilder {
     public static func buildBlock(_ components: View...) -> View {
         let view = View()
@@ -48,7 +48,7 @@ public enum ContainerViewBuilder {
     }
 }
 
-@resultBuilder
+@_functionBuilder
 public enum ViewStackBuilder {
     public static func buildExpression(_ expression: View) -> View {
         expression
