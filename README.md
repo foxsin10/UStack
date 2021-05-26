@@ -1,4 +1,3 @@
-
 # UStack
 
 A tool for StackView in UIKit.
@@ -93,6 +92,59 @@ func hstack() -> UIStackView {
 func vstack() -> UIStackView {
   UILabel()
   UIButton()
+}
+```
+
+### Sample
+
+<p align="center">
+<img src="https://raw.githubusercontent.com/foxsion10/UStack/master/images/UStackSample.jpeg" alt="UStack" title="UStack" width="377"/>
+</p>
+
+As the example image above, the implement code:
+
+```swift
+private lazy var registerActionStack = VStack(spacing: minorSpacing, alignment: .fill) {
+  registerButton
+  UIView.spacer()
+  loginButton
+}
+
+private lazy var registerPolicyStack = HStack(spacing: mediumSpacing) {
+  UIView.spacer()
+  policyCircleButton
+  tipLabel
+  policyInfoButton
+  UIView.spacer()
+}
+
+private lazy var contentStack = VStack(spacing: mainMargin, alignment: .center) {
+  sloganImageView
+  loginLogoImageView
+  registerActionStack
+  UIView.spacer()
+  registerPolicyStack
+}
+```
+
+and the layout code:
+
+```swift
+view.withSubViews {
+  contentStack
+}
+
+contentStack.snp.makeConstraints {
+  $0.top.equalTo(view.safeAreaLayoutGuide.snp.top)
+        .offset(topPadding)
+  $0.leading.trailing.equalToSuperview()
+        .inset(horizontalPadding)
+  $0.bottom.equalTo(view.safeAreaLayoutGuide.snp.bottom)
+}
+
+registerButton.snp.makeConstraints {
+  $0.width.equalTo(view)
+          .inset(horizontalPadding)
 }
 ```
 
