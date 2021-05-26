@@ -4,6 +4,13 @@ A tool for StackView in UIKit.
 
 ## Requirements
 
+for version 0.8.0
+
+- iOS 11.0+
+- Xcode 11+
+
+for UStack ~> 0.9.0
+
 - iOS 11.0+
 - Xcode 12.5+
 
@@ -163,7 +170,7 @@ platform :ios, '11.0'
 use_frameworks!
 
 target 'MyApp' do
-  pod 'UStack', '~> 0.6.0'
+  pod 'UStack', '~> 0.8.0'
 end
 ```
 
