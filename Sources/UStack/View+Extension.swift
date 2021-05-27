@@ -7,26 +7,13 @@ public typealias LayoutPriority = LayoutConstraint.Priority
 
 public extension View {
     @discardableResult
-    func withSubViews(@ViewStackBuilder views: () -> View) -> View {
+    func withSubViews(@ContainerViewBuilder views: () -> View) -> View {
         let subView = views()
-        switch subView {
-        case let view as StackView:
-            view.translatesAutoresizingMaskIntoConstraints = false
-            self.addSubview(view)
-            return self
-
-        default:
-            if subView.subviews.count == 1 && subView.subviews.first?.tag == singleViewTag {
-                subView.translatesAutoresizingMaskIntoConstraints = false
-                self.addSubview(subView)
-                return self
-            }
-            subView.subviews.forEach {
-                $0.translatesAutoresizingMaskIntoConstraints = false
-                self.addSubview($0)
-            }
-            return self
+        subView.subviews.forEach {
+            $0.translatesAutoresizingMaskIntoConstraints = false
+            self.addSubview($0)
         }
+        return self
     }
 
     static func spacer(height: CGFloat? = nil, width: CGFloat? = nil) -> View {

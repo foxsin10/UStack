@@ -15,8 +15,10 @@ public enum HStackBuilder {
         let view: StackView
         #if canImport(UIKit)
         view = StackView(arrangedSubviews: components)
+        view.axis = .horizontal
         #elseif canImport(AppKit)
         view = StackView(views: components)
+        view.orientation = .horizontal
         #endif
         return view
     }
@@ -29,8 +31,10 @@ public enum VStackBuilder {
         let view: StackView
         #if canImport(UIKit)
         view = StackView(arrangedSubviews: components)
+        view.axis = .vertical
         #elseif canImport(AppKit)
         view = StackView(views: components)
+        view.orientation = .vertical
         #endif
         return view
     }
@@ -48,8 +52,6 @@ public enum ContainerViewBuilder {
     }
 }
 
-let singleViewTag = "ViewStackBuilder".hashValue ^ "ustack".hashValue
-
 @resultBuilder
 public enum ViewStackBuilder {
     public static func buildExpression(_ expression: View) -> View {
@@ -59,9 +61,7 @@ public enum ViewStackBuilder {
     public static func buildBlock(_ components: View...) -> View {
         let count = components.count
         switch count {
-        case 1:
-            components.first?.tag = singleViewTag
-            return components.first ?? View()
+        case 1: return components.first ?? View()
 
         default:
             let view = View()

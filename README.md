@@ -4,13 +4,6 @@ A tool for StackView in UIKit.
 
 ## Requirements
 
-for version 0.8.0
-
-- iOS 11.0+
-- Xcode 11+
-
-for UStack ~> 0.9.0
-
 - iOS 11.0+
 - Xcode 12.5+
 
@@ -160,7 +153,7 @@ registerButton.snp.makeConstraints {
 
 - File > Swift Packages > Add Package Dependency
 - Add `https://github.com/foxsin10/UStack.git`
-- Select "Up to Next Major" with "1.0.0"
+- Select "Up to Next Major" with "2.0.0"
 
 #### CocoaPods
 
@@ -170,7 +163,7 @@ platform :ios, '11.0'
 use_frameworks!
 
 target 'MyApp' do
-  pod 'UStack', '~> 0.8.0'
+  pod 'UStack', '~> 1.0.4'
 end
 ```
 
