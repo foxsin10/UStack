@@ -16,6 +16,11 @@ public extension View {
             return self
 
         default:
+            if subView.subviews.count == 0 {
+                subView.translatesAutoresizingMaskIntoConstraints = false
+                self.addSubview(subView)
+                return self
+            }
             subView.subviews.forEach {
                 $0.translatesAutoresizingMaskIntoConstraints = false
                 self.addSubview($0)
@@ -42,5 +47,39 @@ public extension View {
 
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
+    }
+}
+
+open class Spacer: View {
+    init(height: CGFloat? = nil, width: CGFloat? = nil) {
+        super.init(frame: .zero)
+        if let height = height {
+            self.heightAnchor.constraint(equalToConstant: height).isActive = true
+        }
+        if let width = width {
+            self.widthAnchor.constraint(equalToConstant: width).isActive = true
+        }
+        #if canImport(UIKit)
+        self.setContentHuggingPriority(UILayoutPriority(rawValue: 0), for: .vertical)
+        self.setContentHuggingPriority(UILayoutPriority(rawValue: 0), for: .horizontal)
+        #elseif canImport(AppKit)
+        self.setContentHuggingPriority(LayoutPriority(0), for: .horizontal)
+        self.setContentHuggingPriority(LayoutPriority(0), for: .vertical)
+        #endif
+
+        self.translatesAutoresizingMaskIntoConstraints = false
+    }
+
+    required public init?(coder: NSCoder) {
+        super.init(coder: coder)
+        #if canImport(UIKit)
+        self.setContentHuggingPriority(UILayoutPriority(rawValue: 0), for: .vertical)
+        self.setContentHuggingPriority(UILayoutPriority(rawValue: 0), for: .horizontal)
+        #elseif canImport(AppKit)
+        self.setContentHuggingPriority(LayoutPriority(0), for: .horizontal)
+        self.setContentHuggingPriority(LayoutPriority(0), for: .vertical)
+        #endif
+
+        self.translatesAutoresizingMaskIntoConstraints = false
     }
 }
