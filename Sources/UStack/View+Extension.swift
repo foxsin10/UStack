@@ -51,7 +51,7 @@ public extension View {
 }
 
 open class Spacer: View {
-    init(height: CGFloat? = nil, width: CGFloat? = nil) {
+    public init(height: CGFloat? = nil, width: CGFloat? = nil) {
         super.init(frame: .zero)
         if let height = height {
             self.heightAnchor.constraint(equalToConstant: height).isActive = true
