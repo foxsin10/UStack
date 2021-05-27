@@ -16,7 +16,7 @@ public extension View {
             return self
 
         default:
-            if subView.subviews.count == 0 {
+            if subView.subviews.count == 1 && subView.subviews.first?.tag == singleViewTag {
                 subView.translatesAutoresizingMaskIntoConstraints = false
                 self.addSubview(subView)
                 return self

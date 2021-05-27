@@ -48,6 +48,8 @@ public enum ContainerViewBuilder {
     }
 }
 
+let singleViewTag = "ViewStackBuilder".hashValue ^ "ustack".hashValue
+
 @resultBuilder
 public enum ViewStackBuilder {
     public static func buildExpression(_ expression: View) -> View {
@@ -57,8 +59,9 @@ public enum ViewStackBuilder {
     public static func buildBlock(_ components: View...) -> View {
         let count = components.count
         switch count {
-        case 0: return View.spacer()
-        case 1: return components.first ?? View()
+        case 1:
+            components.first?.tag = singleViewTag
+            return components.first ?? View()
 
         default:
             let view = View()
@@ -72,7 +75,7 @@ public enum ViewStackBuilder {
 
     public static func buildOptional(_ component: View?) -> View {
         guard let view = component else {
-            return View.spacer()
+            return Spacer()
         }
         return view
     }
