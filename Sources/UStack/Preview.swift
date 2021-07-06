@@ -6,21 +6,21 @@ import SwiftUI
 @available(iOS 13.0, tvOS 13.0, *)
 @available(macOS, unavailable)
 @available(watchOS, unavailable)
-struct Preview<View: UIView>: UIViewRepresentable {
+public struct Preview<View: UIView>: UIViewRepresentable {
     private let builder: () -> View
-    init(builder: @escaping () -> View) {
+    public init(builder: @escaping () -> View) {
         self.builder = builder
     }
 
-    func updateUIView(_ uiView: UIViewType, context: Context) {
+    public func updateUIView(_ uiView: UIViewType, context: Context) {
         
     }
 
-    func makeUIView(context: Context) -> some UIView {
+    public func makeUIView(context: Context) -> some UIView {
         builder()
     }
 
-    func makeCoordinator() -> () { () }
+    public func makeCoordinator() -> () { () }
 }
 
 #endif
