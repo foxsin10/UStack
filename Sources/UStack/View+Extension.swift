@@ -1,5 +1,6 @@
 #if canImport(UIKit)
 import UIKit
+public typealias LayoutPriority = UILayoutPriority
 #elseif canImport(AppKit)
 import AppKit
 public typealias LayoutPriority = LayoutConstraint.Priority
@@ -24,14 +25,9 @@ public extension View {
         if let width = width {
             view.widthAnchor.constraint(equalToConstant: width).isActive = true
         }
-        #if canImport(UIKit)
-        view.setContentHuggingPriority(UILayoutPriority(rawValue: 0), for: .vertical)
-        view.setContentHuggingPriority(UILayoutPriority(rawValue: 0), for: .horizontal)
-        #elseif canImport(AppKit)
+
         view.setContentHuggingPriority(LayoutPriority(0), for: .horizontal)
         view.setContentHuggingPriority(LayoutPriority(0), for: .vertical)
-        #endif
-
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }
@@ -46,26 +42,16 @@ open class Spacer: View {
         if let width = width {
             self.widthAnchor.constraint(equalToConstant: width).isActive = true
         }
-        #if canImport(UIKit)
-        self.setContentHuggingPriority(UILayoutPriority(rawValue: 0), for: .vertical)
-        self.setContentHuggingPriority(UILayoutPriority(rawValue: 0), for: .horizontal)
-        #elseif canImport(AppKit)
+
         self.setContentHuggingPriority(LayoutPriority(0), for: .horizontal)
         self.setContentHuggingPriority(LayoutPriority(0), for: .vertical)
-        #endif
-
         self.translatesAutoresizingMaskIntoConstraints = false
     }
 
     required public init?(coder: NSCoder) {
         super.init(coder: coder)
-        #if canImport(UIKit)
-        self.setContentHuggingPriority(UILayoutPriority(rawValue: 0), for: .vertical)
-        self.setContentHuggingPriority(UILayoutPriority(rawValue: 0), for: .horizontal)
-        #elseif canImport(AppKit)
         self.setContentHuggingPriority(LayoutPriority(0), for: .horizontal)
         self.setContentHuggingPriority(LayoutPriority(0), for: .vertical)
-        #endif
 
         self.translatesAutoresizingMaskIntoConstraints = false
     }
