@@ -61,7 +61,7 @@ public enum ViewStackBuilder {
     public static func buildBlock(_ components: View...) -> View {
         let count = components.count
         switch count {
-        case 1: return components.first ?? View()
+        case 1: return components.first ?? Spacer()
 
         default:
             let view = View()
