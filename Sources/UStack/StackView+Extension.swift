@@ -8,7 +8,7 @@ public typealias LayoutConstraint = NSLayoutConstraint
 
 final public class VStackView: StackView {}
 public extension VStackView {
-//    #if canImport(UIKit)
+    #if canImport(UIKit)
     convenience init(spacing: CGFloat = 0,
                      distribution: Distribution = .fill,
                      alignment: Alignment = .fill,
@@ -19,18 +19,18 @@ public extension VStackView {
         self.distribution = distribution
         self.axis = .vertical
     }
-//    #elseif canImport(AppKit)
-//    convenience init(spacing: CGFloat = 0,
-//                     distribution: Distribution = .fill,
-//                     alignment: NSLayoutConstraint.Attribute = .leading,
-//                     @ViewStackBuilder views: () -> View?) {
-//        self.init(views: views()?.subviews ?? [])
-//        self.spacing = spacing
-//        self.alignment = alignment
-//        self.distribution = distribution
-//        self.orientation = .vertical
-//    }
-//    #endif
+    #elseif canImport(AppKit)
+    convenience init(spacing: CGFloat = 0,
+                     distribution: Distribution = .fill,
+                     alignment: NSLayoutConstraint.Attribute = .leading,
+                     @ViewStackBuilder views: () -> View?) {
+        self.init(views: views()?.subviews ?? [])
+        self.spacing = spacing
+        self.alignment = alignment
+        self.distribution = distribution
+        self.orientation = .vertical
+    }
+    #endif
 }
 
 final public class HStackView: StackView {}
