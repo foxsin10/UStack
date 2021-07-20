@@ -34,8 +34,8 @@ public extension StackView {
     #endif
 }
 
-final public class VStack: StackView {}
-public extension VStack {
+final public class VStackView: StackView {}
+public extension VStackView {
     #if canImport(UIKit)
     convenience init(spacing: CGFloat = 0,
                      distribution: Distribution = .fill,
@@ -61,8 +61,8 @@ public extension VStack {
     #endif
 }
 
-final public class HStack: StackView {}
-public extension HStack {
+final public class HStackView: StackView {}
+public extension HStackView {
     #if canImport(UIKit)
     convenience init(spacing: CGFloat = 0,
                      distribution: Distribution = .fill,

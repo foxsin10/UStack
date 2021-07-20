@@ -1,7 +1,7 @@
 Pod::Spec.new do |s|
 
   s.name         = "UStack"
-  s.version      = "1.0.6"
+  s.version      = "1.0.7"
   s.summary      = "A tool for use viewbuilder like syntx in UIKit and AppKit."
 
   s.description  = <<-DESC
