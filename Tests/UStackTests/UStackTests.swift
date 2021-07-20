@@ -68,7 +68,7 @@
             let button = UIButton()
             let simpleView = UIView()
 
-            let hstack = HStack {
+            let hstack = HStackView {
                 label
                 button
                 simpleView
@@ -89,12 +89,12 @@
             let button = UIButton()
             let simpleView = UIView()
 
-            let vstack = VStack {
+            let vstack = VStackView {
                 label
                 button
                 simpleView
             }
-            XCTAssertEqual(vstack.axis, .vertical)
+            XCTAssertEqual(vstack.axis, LayoutConstraint.Axis.vertical)
             for (idx, view) in vstack.arrangedSubviews.enumerated() {
                 switch idx {
                 case 0: XCTAssertEqual(view, label)
@@ -106,8 +106,8 @@
         }
 
         func testNestedStackCount() {
-            let nestedStack = HStack {
-                VStack {
+            let nestedStack = HStackView {
+                VStackView {
                     UILabel()
                     UIView()
                 }
@@ -138,7 +138,7 @@
             }
 
             @ViewStackBuilder
-            func build() -> UIView {
+            func build() -> UIView? {
                 button
                 label
                 if refresh {
@@ -152,7 +152,7 @@
                 }
             }
 
-            let view = build()
+            let view = build() ?? View()
 
             for (idx, subview) in view.subviews.enumerated() {
                 let tag = tags[idx]
