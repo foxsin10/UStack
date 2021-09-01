@@ -12,8 +12,8 @@ public extension VStackView {
     convenience init(spacing: CGFloat = 0,
                      distribution: Distribution = .fill,
                      alignment: Alignment = .fill,
-                     @ViewStackBuilder views: () -> View?) {
-        self.init(arrangedSubviews: views()?.subviews ?? [])
+                     @ViewStackBuilder views: () -> [View]) {
+        self.init(arrangedSubviews: views())
         self.spacing = spacing
         self.alignment = alignment
         self.distribution = distribution
@@ -23,8 +23,8 @@ public extension VStackView {
     convenience init(spacing: CGFloat = 0,
                      distribution: Distribution = .fill,
                      alignment: NSLayoutConstraint.Attribute = .leading,
-                     @ViewStackBuilder views: () -> View?) {
-        self.init(views: views()?.subviews ?? [])
+                     @ViewStackBuilder views: () -> [View]) {
+        self.init(views: views())
         self.spacing = spacing
         self.alignment = alignment
         self.distribution = distribution
@@ -39,8 +39,8 @@ public extension HStackView {
     convenience init(spacing: CGFloat = 0,
                      distribution: Distribution = .fill,
                      alignment: Alignment = .fill,
-                     @ViewStackBuilder views: () -> View?) {
-        self.init(arrangedSubviews: views()?.subviews ?? [])
+                     @ViewStackBuilder views: () -> [View]) {
+        self.init(arrangedSubviews: views())
         self.spacing = spacing
         self.alignment = alignment
         self.distribution = distribution
@@ -50,8 +50,8 @@ public extension HStackView {
     convenience init(spacing: CGFloat = 0,
                      distribution: Distribution = .fill,
                      alignment: NSLayoutConstraint.Attribute = .centerY,
-                     @ViewStackBuilder views: () -> View?) {
-        self.init(views: views()?.subviews ?? [])
+                     @ViewStackBuilder views: () -> [View]) {
+        self.init(views: views())
         self.spacing = spacing
         self.alignment = alignment
         self.distribution = distribution

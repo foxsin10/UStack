@@ -138,7 +138,7 @@
             }
 
             @ViewStackBuilder
-            func build() -> UIView? {
+            func build() -> [View] {
                 button
                 label
                 if refresh {
@@ -152,9 +152,9 @@
                 }
             }
 
-            let view = build() ?? View()
+            let views = build()
 
-            for (idx, subview) in view.subviews.enumerated() {
+            for (idx, subview) in views.enumerated() {
                 let tag = tags[idx]
                 switch idx {
                 case 2:
@@ -175,7 +175,7 @@
                     XCTAssertEqual(subview.tag, tag)
                 }
             }
-            XCTAssertEqual(view.subviews.count, 4)
+            XCTAssertEqual(views.count, 4)
         }
         #endif
     }
