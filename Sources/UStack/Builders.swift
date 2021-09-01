@@ -42,49 +42,44 @@ public enum VStackBuilder {
 
 @resultBuilder
 public enum ContainerViewBuilder {
-    public static func buildBlock(_ components: View...) -> View {
-        let view = View()
-        components.forEach {
-            $0.translatesAutoresizingMaskIntoConstraints = false
-            view.addSubview($0)
-        }
-        return view
+    public static func buildBlock(_ components: View...) -> [View] {
+        components.forEach { $0.translatesAutoresizingMaskIntoConstraints = false }
+        return components
     }
 }
 
 @resultBuilder
 public enum ViewStackBuilder {
-    public static func buildExpression(_ expression: View) -> View {
+    public static func buildExpression(_ expression: View) -> [View] {
+        [expression]
+    }
+
+    public static func buildExpression(_ expression: View?) -> [View] {
+        guard let view = expression else { return [] }
+        return [view]
+    }
+
+    public static func buildExpression(_ expression: [View]) -> [View] {
         expression
     }
 
-    public static func buildBlock(_ components: View...) -> View {
-        let count = components.count
-        switch count {
-        case 1: return components.first ?? Spacer()
-
-        default:
-            let view = View()
-            components.forEach {
-                $0.translatesAutoresizingMaskIntoConstraints = false
-                view.addSubview($0)
-            }
-            return view
+    public static func buildBlock(_ components: [View]...) -> [View] {
+        components.flatMap { views -> [View] in
+            views.forEach { $0.translatesAutoresizingMaskIntoConstraints = false }
+            return views
         }
     }
 
-    public static func buildOptional(_ component: View?) -> View {
-        guard let view = component else {
-            return Spacer()
-        }
+    public static func buildOptional(_ component: [View]?) -> [View] {
+        guard let view = component else { return [] }
         return view
     }
 
-    public static func buildEither(first component: View) -> View {
+    public static func buildEither(first component: [View]) -> [View] {
         component
     }
 
-    public static func buildEither(second component: View) -> View {
+    public static func buildEither(second component: [View]) -> [View] {
         component
     }
 }
