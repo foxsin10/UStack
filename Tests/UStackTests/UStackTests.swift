@@ -1,8 +1,7 @@
-    import XCTest
     @testable import UStack
+    import XCTest
 
     final class UStackTests: XCTestCase {
-
         private let tags: [Int] = [114, 321, 323, 244, 1122]
         override func measure(_ block: () -> Void) {
             #if canImport(UIKit)
@@ -12,6 +11,7 @@
             testHStack()
             #endif
         }
+
         #if canImport(UIKit)
         func testHStackBuilder() {
             let label = UILabel()

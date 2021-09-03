@@ -8,10 +8,9 @@ public typealias LayoutPriority = LayoutConstraint.Priority
 
 public extension View {
     @discardableResult
-    func withSubViews(@ContainerViewBuilder views: () -> [View]) -> View {
+    func withSubViews(@ViewStackBuilder views: () -> [View]) -> View {
         let subViews = views()
         subViews.forEach {
-            $0.translatesAutoresizingMaskIntoConstraints = false
             self.addSubview($0)
         }
         return self
