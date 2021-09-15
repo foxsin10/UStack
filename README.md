@@ -163,7 +163,7 @@ platform :ios, '11.0'
 use_frameworks!
 
 target 'MyApp' do
-  pod 'UStack', '~> 1.0.4'
+  pod 'UStack', '~> 2.3.0'
 end
 ```
 
