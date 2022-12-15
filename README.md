@@ -9,28 +9,28 @@ A tool for StackView in UIKit.
 
 ### Use cases
 
-HStack use-case:
+HStackView use-case:
 
 ```swift
 let label = UILabel()
 let button = UIButton()
 let simpleView = UIView()
 
-let hstack = HStack {
+let hstack = HStackView {
     label
     button
     simpleView
 }
 ```
 
-VStack use-case:
+VStackView use-case:
 
 ```swift
 let label = UILabel()
 let button = UIButton()
 let simpleView = UIView()
 
-let vstack = VStack {
+let vstack = VStackView {
     label
     button
     simpleView
@@ -43,19 +43,19 @@ Nested use-case:
 let refresh = Bool.random()
 let refreshAnother = Bool.random()
 let idx = Int.random(in: 1 ... 12)
-HStack {
-  VStack {
+HStackView {
+  VStackView {
     UILabel()
     UIButton()
   }
   if refresh {
-    VStack {
+    VStackView {
       UIImageView()
       UIView()
     }
   }
   if refreshAnother {
-    VStack {
+    VStackView {
       UIImageView()
       UIView()
     }
@@ -63,7 +63,7 @@ HStack {
       UIView()
   }
   UIView().withSubViews {
-    HStack {
+    HStackView {
       UILabel()
       UIButton()
     }
@@ -75,24 +75,8 @@ ps: every control flow will be treated as a block, give the simplest VStack for 
 
 - `buildExpression(_:)` -> UILabel
 - `buildExpression(_:)` -> UIButton
-- `buildBlock(_:)` -> VStack
-- `buildExpression(_:)` -> VStack
-
-StackBuilder use-case:
-
-```swift
-@HStackBuilder
-func hstack() -> UIStackView {
-  UILabel()
-  UIButton()
-}
-
-@VStackBuilder
-func vstack() -> UIStackView {
-  UILabel()
-  UIButton()
-}
-```
+- `buildBlock(_:)` -> VStackView
+- `buildExpression(_:)` -> VStackView
 
 ### Sample
 
@@ -103,13 +87,13 @@ func vstack() -> UIStackView {
 As the example image above, the implement code:
 
 ```swift
-private lazy var registerActionStack = VStack(spacing: minorSpacing, alignment: .fill) {
+private lazy var registerActionStack = VStackView(spacing: minorSpacing, alignment: .fill) {
   registerButton
   UIView.spacer()
   loginButton
 }
 
-private lazy var registerPolicyStack = HStack(spacing: mediumSpacing) {
+private lazy var registerPolicyStack = HStackView(spacing: mediumSpacing) {
   UIView.spacer()
   policyCircleButton
   tipLabel
@@ -117,7 +101,7 @@ private lazy var registerPolicyStack = HStack(spacing: mediumSpacing) {
   UIView.spacer()
 }
 
-private lazy var contentStack = VStack(spacing: mainMargin, alignment: .center) {
+private lazy var contentStack = VStackView(spacing: mainMargin, alignment: .center) {
   sloganImageView
   loginLogoImageView
   registerActionStack
