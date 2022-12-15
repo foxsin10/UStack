@@ -1,28 +1,29 @@
-    @testable import UStack
-    import XCTest
+@testable import UStack
+import XCTest
 
-    final class UStackTests: XCTestCase {
-        private let tags: [Int] = [114, 321, 323, 244, 1122]
-        override func measure(_ block: () -> Void) {
-            #if canImport(UIKit)
+final class UStackTests: XCTestCase {
+    private let tags: [Int] = [114, 321, 323, 244, 1122]
+    override func measure(_: () -> Void) {
+        #if canImport(UIKit)
             testVStackBuilder()
             testHStackBuilder()
             testVStack()
             testHStack()
-            #endif
-        }
+        #endif
+    }
 
-        #if canImport(UIKit)
+    #if canImport(UIKit)
         func testHStackBuilder() {
             let label = UILabel()
             let button = UIButton()
             let simpleView = UIView()
 
-            @HStackBuilder
             func builder() -> UIStackView {
-                label
-                button
-                simpleView
+                HStackView {
+                    label
+                    button
+                    simpleView
+                }
             }
 
             let stack = builder()
@@ -43,11 +44,12 @@
             let button = UIButton()
             let simpleView = UIView()
 
-            @VStackBuilder
             func builder() -> UIStackView {
-                label
-                button
-                simpleView
+                VStackView {
+                    label
+                    button
+                    simpleView
+                }
             }
 
             let stack = builder()
@@ -109,6 +111,9 @@
             let nestedStack = HStackView {
                 VStackView {
                     UILabel()
+                        .config { label in
+                            label.text = "1313"
+                        }
                     UIView()
                 }
                 UIView().withSubViews {
@@ -126,14 +131,14 @@
         }
 
         func testConrolFlow() {
-            let randomIdx = Int.random(in: 12 ..< 29)
+            let randomIDx = Int.random(in: 12 ..< 29)
             let refresh = Bool.random()
             let button = UIButton()
             let label = UILabel()
             let refreshLabel = UILabel()
             let unRefreshLabel = UILabel()
             let emptyView = UIView()
-            for (idx, view) in  [button, label, refreshLabel, unRefreshLabel, emptyView].enumerated() {
+            for (idx, view) in [button, label, refreshLabel, unRefreshLabel, emptyView].enumerated() {
                 view.tag = tags[idx]
             }
 
@@ -146,7 +151,7 @@
                 } else {
                     unRefreshLabel
                 }
-                switch randomIdx {
+                switch randomIDx {
                 case 12: emptyView
                 default: UIView()
                 }
@@ -165,7 +170,7 @@
                     }
 
                 case 3:
-                    if randomIdx == 12 {
+                    if randomIDx == 12 {
                         XCTAssertEqual(subview.tag, tags.last)
                     } else {
                         XCTAssertEqual(subview.tag, 0)
@@ -177,5 +182,16 @@
             }
             XCTAssertEqual(views.count, 4)
         }
-        #endif
+    #endif
+}
+
+
+protocol Configable {}
+extension Configable {
+    func config(_ configuration: @escaping (Self) -> Void) -> Self {
+        configuration(self)
+        return self
     }
+}
+
+extension UIView: Configable {}
