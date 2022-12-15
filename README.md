@@ -118,16 +118,13 @@ view.withSubViews {
 }
 
 contentStack.snp.makeConstraints {
-  $0.top.equalTo(view.safeAreaLayoutGuide.snp.top)
-        .offset(topPadding)
-  $0.leading.trailing.equalToSuperview()
-        .inset(horizontalPadding)
+  $0.top.equalTo(view.safeAreaLayoutGuide.snp.top).offset(topPadding)
+  $0.leading.trailing.equalToSuperview().inset(horizontalPadding)
   $0.bottom.equalTo(view.safeAreaLayoutGuide.snp.bottom)
 }
 
 registerButton.snp.makeConstraints {
-  $0.width.equalTo(view)
-          .inset(horizontalPadding)
+  $0.width.equalTo(view).inset(horizontalPadding)
 }
 ```
 
